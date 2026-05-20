@@ -52,6 +52,15 @@ function App() {
     }
   };
 
+  const handleResetAllScores = () => {
+    if (window.confirm("Are you sure you want to reset all scores?")) {
+      setPlayers(prevPlayers => prevPlayers.map(player => ({
+        ...player,
+        scores: Array(9).fill(0)
+      })));
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-gray-50 flex flex-col items-center pt-10 pb-20 font-sans">
       <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
@@ -122,7 +131,10 @@ function App() {
             </div>
           ))}
         </div>
-
+          <button className="w-full mt-8 rounded-xl p-3 bg-red-500 text-white font-bold active:bg-red-600 active:scale-95 transition-transform shadow-lg"
+            onClick={handleResetAllScores}>
+            Reset scores
+          </button>
       </div>
     </div>
   );
